@@ -1,0 +1,26 @@
+package com.example.chalokhoj;
+
+import android.os.AsyncTask;
+
+public class LoginClass extends AsyncTask<Void, Void, Void> {
+
+	
+	public LoginClass()
+	{
+		
+	}
+	
+	protected void onPreExecute()
+	{
+		
+	}
+	
+	@Override
+	protected Void doInBackground(Void... params) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+
+}

@@ -1,0 +1,11 @@
+package com.example.chalokhoj;
+
+public class EventClass {
+	
+	String id,name,latitude,longitude,address,end_time,number_drivers;
+	public EventClass(String id,String name,String latitude,String longitude,String address,String end_time,int number_drivers)
+	{
+		
+	}
+
+}

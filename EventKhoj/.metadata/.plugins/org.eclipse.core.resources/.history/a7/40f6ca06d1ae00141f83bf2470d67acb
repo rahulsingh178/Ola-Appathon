@@ -1,0 +1,20 @@
+package com.example.chalokhoj;
+
+import android.content.Context;
+import android.os.AsyncTask;
+
+public class ListParser extends AsyncTask<Void, Void, Void>
+{
+
+	Context context;
+	public ListParser(Context c)
+	{
+		
+	}
+	@Override
+	protected Void doInBackground(Void... params) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,75 @@
+package com.example.chalokhoj;
+
+import java.util.ArrayList;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import android.app.ActionBar;
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+
+public class ListActivity extends Activity {
+
+	ArrayList<EventClass> eventdata=new ArrayList<EventClass>();
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_list);
+		ActionBar ab=getActionBar();
+		ab.setTitle("List of Events");
+		Intent intent=getIntent();
+		String json_data=intent.getStringExtra("JSON_Data");
+		Log.e("JSON DATA",json_data);
+		
+		decodeJSON(json_data);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.list, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
+		if (id == R.id.action_settings) {
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+	
+	public void decodeJSON(String json)
+	{
+		try
+		{
+		JSONArray array=new JSONArray(json);
+		
+		for(int i=0;i<array.length();i++)
+		{
+			JSONObject o=array.getJSONObject(i);
+			String event_id=o.getString("event_id");
+			String event_name=o.getString("event_name");
+			String event_latitude=o.getString("event_lattitude");
+			String event_longitude=o.getString("event_longitude");
+			String event_address=o.getString("event_address");
+			String event_end_time=o.getString("event_end_time");
+			int number_drivers=o.getString("number_drivers");
+			eventdata.add(new EventClass(event_id,event_name,event_latitude,event_longitude,event_address,event_end_time,number_drivers));
+		}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+}

@@ -1,0 +1,59 @@
+package com.example.chalokhoj;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import android.app.ActionBar;
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+
+public class ListActivity extends Activity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_list);
+		ActionBar ab=getActionBar();
+		ab.setTitle("List of Events");
+		Intent intent=getIntent();
+		String json_data=intent.getStringExtra("JSON_Data");
+		Log.e("JSON DATA",json_data);
+		
+		decodeJSON(json_data);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.list, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
+		if (id == R.id.action_settings) {
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+	
+	public void decodeJSON(String json)
+	{
+		try
+		{
+		JSONArray array=new JSONArray(json);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+}

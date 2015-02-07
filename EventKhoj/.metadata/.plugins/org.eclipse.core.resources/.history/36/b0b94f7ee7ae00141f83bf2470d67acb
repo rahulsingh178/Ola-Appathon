@@ -1,0 +1,7 @@
+package com.example.chalokhoj;
+
+import android.view.View.OnClickListener;
+
+public class ListAdapterClass extends BaseAdapter implements OnClickListener {
+
+}
