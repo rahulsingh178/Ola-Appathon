@@ -1,20 +1,22 @@
 package com.example.chalokhoj;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class ListActivity extends Activity {
 
@@ -22,10 +24,16 @@ public class ListActivity extends Activity {
 	ListAdapterClass adapter;
 	ArrayList<EventClass> eventdata=new ArrayList<EventClass>();
 	ListActivity listactivity=null;
+	SharedPreferences sp;
+	Calendar c;
+	int current_hour;
+	int other_hour;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list);
+		c=Calendar.getInstance();
+		current_hour=c.get(Calendar.HOUR_OF_DAY);
 		ActionBar ab=getActionBar();
 		ab.setTitle("List of Events");
 		Intent intent=getIntent();
@@ -33,13 +41,16 @@ public class ListActivity extends Activity {
 		event_list=(ListView)findViewById(R.id.total_list);
 		Log.e("JSON DATA",json_data);
 		
-		
+		sp= getSharedPreferences("CurrentLocationData", Context.MODE_PRIVATE);
 		decodeJSON(json_data);
 		
 		Log.e("Some Event Name",""+eventdata.get(3).getName().toString());
 		Log.e("Some Event Time",""+eventdata.get(0).getEndTime().toString());
 		Log.e("Some Event longitude",""+eventdata.get(4).getLongitude().toString());
 		Log.e("Some Event address",""+eventdata.get(4).getAddress().toString());
+		
+		Log.e("Latitude Obtained is",sp.getString("latitude","0"));
+		Log.e("Latitude Obtained is",sp.getString("longitude","0"));
 		
 		listactivity=this;
 		Resources res=getResources();
@@ -81,7 +92,20 @@ public class ListActivity extends Activity {
 			String event_latitude=o.getString("event_lattitude");
 			String event_longitude=o.getString("event_longitude");
 			String event_address=o.getString("event_address");
-			String event_end_time=o.getString("event_end_time");
+			String time1=o.getString("event_end_time");
+			String time2=time1.split(" ")[1];
+			String time3=time2.split(":")[0];
+			
+			if(Integer.parseInt(time3)-current_hour>0)
+			{
+				other_hour=Integer.parseInt(time3)-current_hour;
+			}
+			else
+			{
+				other_hour=current_hour-Integer.parseInt(time3);
+			}
+			
+			String event_end_time=other_hour+" hours";
 			int number_drivers=o.getInt("number_drivers");
 			eventdata.add(new EventClass(event_id,event_name,event_latitude,event_longitude,event_address,event_end_time,number_drivers));
 		}
@@ -95,7 +119,15 @@ public class ListActivity extends Activity {
 	 public void onItemClick(int mPosition)
      {
          EventClass tempValues = (EventClass)eventdata.get(mPosition);
-         Toast.makeText(ListActivity.this,"ITS WORKING!!!!",Toast.LENGTH_LONG).show();
+         //Toast.makeText(ListActivity.this,tempValues.getName(),Toast.LENGTH_LONG).show();
+         Intent intent=new Intent(ListActivity.this,MapPathPlotterActivity.class);
+         intent.putExtra("name",tempValues.getName());
+         intent.putExtra("address",tempValues.getAddress());
+         intent.putExtra("latitude",Double.parseDouble(tempValues.getLatitude()));
+         intent.putExtra("longitude",Double.parseDouble(tempValues.getLongitude()));
+         intent.putExtra("id",tempValues.getId());
+         intent.putExtra("drivers",tempValues.getNumberDrivers());
+         startActivity(intent);
      }
 	
 }

@@ -1,0 +1,21 @@
+package com.example.chalokhoj;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+
+public class MapPathPlotterActivity extends Activity {
+
+	SharedPreferences sp;
+	double currentlat,currentlong;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_map_path_plotter);
+		sp= getSharedPreferences("CurrentLocationData", Context.MODE_PRIVATE);
+		currentlat=Double.parseDouble(sp.getString("latitude","0"));
+		currentlong=Double.parseDouble(sp.getString("longitude","0"));
+		
+	}
+}

@@ -2,6 +2,8 @@ package com.example.chalokhoj;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
@@ -31,6 +33,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback{
 	double latitude,longitude;
 	Location location;
 
+	SharedPreferences sharedpreferences;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,7 +46,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback{
 		
 		MapFragment mapFragment=(MapFragment)getFragmentManager().findFragmentById(R.id.map);
 		mapFragment.getMapAsync(this);
-		
+		sharedpreferences = getSharedPreferences("CurrentLocationData", Context.MODE_PRIVATE);
 		
 	}
 
@@ -74,7 +77,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback{
 		}
 		catch(Exception e)
 		{
-			
+			e.printStackTrace();
 		}
 	}
 	
@@ -98,7 +101,12 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback{
         map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
         
         LatLng current=new LatLng(location.getLatitude(),location.getLongitude());
-        map.addMarker(new MarkerOptions().title("Current Location").snippet("Bah").position(current));
+        map.addMarker(new MarkerOptions().title("Current Location").snippet("").position(current));
+        Editor e=sharedpreferences.edit();
+        e.putString("latitude",String.valueOf(location.getLatitude()));
+        e.putString("longitude",String.valueOf(location.getLongitude()));
+        e.commit();
+        
         }
 		
 	}

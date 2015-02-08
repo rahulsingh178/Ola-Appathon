@@ -1,0 +1,61 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.chalokhoj.MapPathPlotterActivity"
+    android:id="@+id/path_map"
+    android:background="@color/white" >
+
+    
+    <!--fragment
+        android:id="@+id/map_path_plot"
+        android:layout_width="match_parent"
+        android:layout_height="390dp"
+        android:name="com.google.android.gms.maps.MapFragment" 
+        /-->
+        
+        <WebView
+            android:id="@+id/web_map"
+            android:layout_width="match_parent"
+            android:layout_height="380dp" 
+            />
+    
+    <TextView
+        android:id="@+id/drivers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Driver Traffic"
+        android:layout_centerHorizontal="true" 
+        android:layout_below="@+id/map_path_plot"
+        android:textSize="25dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        />
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:orientation="horizontal"
+        android:layout_below="@+id/drivers"
+        >
+    
+        <Button
+            android:id="@+id/ok"
+            android:text="Take Event"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:onClick="okFunction"
+            android:background="@drawable/round_layout"
+            />
+        
+        <Button
+            android:id="@+id/cancel"
+            android:text="Cancel"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:onClick="cancelFunction"
+            android:background="@drawable/round_layout"
+            />
+    </LinearLayout>
+    
+</RelativeLayout>

@@ -1,0 +1,16 @@
+package com.example.chalokhoj;
+
+import android.app.Activity;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+
+public class MapPathPlotterActivity extends Activity {
+
+	SharedPreferences sp;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_map_path_plotter);
+		sp=getSharedPreferences();
+	}
+}

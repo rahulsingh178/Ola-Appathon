@@ -4,15 +4,14 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
 
 public class ListAdapterClass extends BaseAdapter implements OnClickListener {
@@ -23,13 +22,13 @@ public class ListAdapterClass extends BaseAdapter implements OnClickListener {
     public Resources res;
     EventClass tempValues=null;
     int i=0;
-	
+	SharedPreferences sp;
 	public ListAdapterClass(Activity a,ArrayList<EventClass> e,Resources resLocal)
 	{
 		activity=a;
 		data=e;
 		res=resLocal;
-		
+		sp=a.getSharedPreferences("CurrentLocationData", Context.MODE_PRIVATE);
 		inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 		
@@ -99,8 +98,8 @@ public class ListAdapterClass extends BaseAdapter implements OnClickListener {
             /************  Set Model values in Holder elements ***********/
 
              holder.name.setText(tempValues.getName());
-             holder.distance.setText(tempValues.getLatitude());		//we are supposed to calculate distance here
-              holder.time.setText(tempValues.getEndTime());
+             holder.distance.setText(Double.toString(distanceFrom(Double.parseDouble(sp.getString("latitude","0")),Double.parseDouble(sp.getString("longitude","0")),Double.parseDouble(tempValues.getLatitude()),Double.parseDouble(tempValues.getLongitude())))+ " kms");		//we are supposed to calculate distance here
+             holder.time.setText(tempValues.getEndTime());
               
              /******** Set Item Click Listener for LayoutInflater for each row *******/
 
@@ -133,5 +132,17 @@ public class ListAdapterClass extends BaseAdapter implements OnClickListener {
             sct.onItemClick(mPosition);
         }               
     }   
+	
+	public double distanceFrom(double lat1, double lng1, double lat2, double lng2) {
+	    double earthRadius = 3958.75;
+	    double dLat = Math.toRadians(lat2-lat1);
+	    double dLng = Math.toRadians(lng2-lng1);
+	    double a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) * Math.sin(dLng/2) * Math.sin(dLng/2);
+	    double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+	    double dist = earthRadius * c;
+	    double meterConversion = 1.609;
+	    double final1=(dist * meterConversion);
+	    return (double)Math.round(final1*100)/100;
+	}
 
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class LoginActivity extends Activity {
 
@@ -21,14 +22,23 @@ public class LoginActivity extends Activity {
     
     public void loginFunction(View v)
     {
+    	
+    	String number_string=number.getText().toString();
+    	if(number_string.isEmpty()==true)
+    	{
+    		Toast.makeText(LoginActivity.this,"Please Enter a Number" ,Toast.LENGTH_LONG).show();
+    	}
+    	else
+    	{
     	try
     	{
-    	String number_string=number.getText().toString();
     	new LoginClass(LoginActivity.this,number_string).execute();
     	}
+    	
     	catch(Exception e)
     	{
     		e.printStackTrace();
+    	}
     	}
     }
 }

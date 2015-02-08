@@ -1,0 +1,26 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.chalokhoj.MapPathPlotterActivity"
+    android:id="@+id/path_map" >
+
+    
+    <fragment
+        android:id="@+id/map_path_plot"
+        android:layout_width="match_parent"
+        android:layout_height="390dp"
+        android:name="com.google.android.gms.maps.MapFragment" 
+        />
+    
+    <TextView
+        android:id="@+id/drivers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Driver Traffic"
+        android:layout_centerHorizontal="true" 
+        android:layout_below="@+id/map_path_plot"
+        android:textSize="25dp"
+        />
+    
+</RelativeLayout>
