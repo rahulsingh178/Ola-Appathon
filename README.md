@@ -16,19 +16,22 @@ traddic there.
 
 ![:-(](https://github.com/Vishanseru9/Ola-Appathon/blob/master/Screenshots/1.png)
 
-2.After the login the driver is given a list of events arranged by  event ID,event names and the time left before the event 
-ends.Here the driver chooses an event based on the options given which takes him to the next activity.
-
-
+2.After the login the driver is shown where the driver is and then he is logged in his acoount.
 ![:-(](https://github.com/Vishanseru9/Ola-Appathon/blob/master/Screenshots/2.png)
 
-3.In the third activity the driver is shown the distance and the shortest route between the event's location and the 
-driver.The driver is also shown the number of the drivers of OLawho have been already routed to the event's location so that he may avoid traffic.He can also go back to the previous page if wants too. 
+3.The driver is given a list of events arranged by  event ID,event names and the time left before the event 
+ends.Here the driver chooses an event based on the options given which takes him to the next activity.
 
 
 ![:-(](https://github.com/Vishanseru9/Ola-Appathon/blob/master/Screenshots/3.png)
 
-4.This is the final page after which the map is shown which the driver will take to get the event location along with the event details.
+4.In the third activity the driver is shown the distance and the shortest route between the event's location and the 
+driver.The driver is also shown the number of the drivers of OLawho have been already routed to the event's location so that he may avoid traffic.He can also go back to the previous page if wants too. 
 
 
 ![:-(](https://github.com/Vishanseru9/Ola-Appathon/blob/master/Screenshots/4.png)
+
+5.This is the final page after which the map is shown which the driver will take to get the event location along with the event details.
+
+
+![:-(](https://github.com/Vishanseru9/Ola-Appathon/blob/master/Screenshots/5.png)
