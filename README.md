@@ -34,4 +34,4 @@ driver.The driver is also shown the number of the drivers of OLawho have been al
 5.This is the final page after which the map is shown which the driver will take to get the event location along with the event details.
 
 
-![:-(](https://github.com/Vishanseru9/Ola-Appathon/blob/master/Screenshots/5.png)
+![:-(](https://github.com/Vishanseru9/Ola-Appathon/blob/master/Screenshots/6.png)
