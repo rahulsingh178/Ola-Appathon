@@ -3,10 +3,12 @@ App developed during Ola Appathon 2015
 
 #Introduction
 This android app "Savaari Khoj" is made for drivers registered with Ola to help them find customers by routing them to the various events happening in the 
-city.The drivers are routed to the various events  based on the parameters which are their distance to the city and their duration in real time .
-The drivers will also get the event details and the number of cab drivers already routed to the event location so that they may avoid 
-traffic there.
+city.The drivers are routed to the various events  based on the following parameters:
+-Distance to the event happening. 
+-Time until the event ends.
+-Number of other cab drivers also heading to that event.
 
+The drivers will also get other relevant event details along with the location and route marked on the map which can help them decide if they want to go there or not. 
 
 #Description
 
